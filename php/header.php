@@ -1,6 +1,19 @@
+<?php
+if (!isset($_SESSION))
+    {
+        session_start();
+    }
 
+    if(isset($_SESSION['UserLogin'])){
+        echo "Welcome ". $_SESSION['UserLogin'];
+    }
+    else{
+        echo "Welcome Guest";
+    }
 
+      
 
+    ?>
 
 
 <!doctype html>

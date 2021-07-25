@@ -1,5 +1,8 @@
-<?php include_once('header.php');?>
-<?php include_once ('../connection/connection.php');
+
+
+ <?php
+include_once('header.php');
+ include_once ('../connection/connection.php');
 $con = connection();
 
 
@@ -7,9 +10,22 @@ $con = connection();
 if(isset($_POST['submit'])){
    $userName = $_POST['username'];
    $password = $_POST['password'];
- 
-   $sql = "INSERT INTO `user` (`username`, `password`) VALUES ('$userName', '$password' )";
+   $sql = "SELECT * FROM `user` WHERE username = '$userName' AND password = '$password'";
+  // $sql = "INSERT INTO `user` (`username`, `password`) VALUES ('$userName', '$password' )";
    $users = $con->query($sql) or die ($con->error);
+   $row = $users->fetch_assoc();
+   $total = $users->num_rows;
+
+   if($total > 0){
+
+       $_SESSION['UserLogin'] = $row['username'];
+       $_SESSION['Access'] = $row['access'];
+        echo $_SESSION['UserLogin'];
+       echo header('location:../index.php');
+       
+   }else{
+       echo " User not found";
+   }
  
  
  

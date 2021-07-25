@@ -1,23 +1,26 @@
-<?php include_once('php/header.php');
-include_once ('connection/connection.php');?>
-<?php
- $con = connection();
-if(isset($_POST['submit'])){
-   
-
-    $fname = $_POST['firstname'];
-    $lname = $_POST['lastname'];
-    $gender = $_POST['gender'];
-   
-    $sql = "INSERT INTO `student_list`(`first_name`, `last_name`, `gender` ) VALUES ('$fname', '$lname','$gender' )";
-    $students = $con->query($sql) or die ($con->error);
-    echo header('location: index.php');
-
-     
-}else{
+<?php 
     
-}
-    ?>
+
+    include_once('php/header.php');
+    include_once ('connection/connection.php');
+
+    $con = connection();
+    if(isset($_POST['submit'])){
+    
+
+        $fname = $_POST['firstname'];
+        $lname = $_POST['lastname'];
+        $gender = $_POST['gender'];
+    
+        $sql = "INSERT INTO `student_list`(`first_name`, `last_name`, `gender` ) VALUES ('$fname', '$lname','$gender' )";
+        $students = $con->query($sql) or die ($con->error);
+        echo header('location: index.php');
+
+        
+    }else{
+        
+    }
+?>
 
 <body>
 
