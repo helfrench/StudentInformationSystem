@@ -24,10 +24,18 @@ $studID = $_GET['ID'];
  ?>
  
    <body>
- 
-   <a href="../index.php"><button class="btn btn-success mt-5 mb-3"> Back to Index</button></a>
-   <input type="text" value="<?php echo $row['first_name']?>">
+     <div class="container">
+       <div class="row">
+       <input type="text" value="<?php echo $row['first_name']?>">
    <input type="text" value="<?php echo $row['last_name']?>">
+
+   <a href="../index.php"><button class="btn btn-success mt-5 mb-3"> Back to Index</button></a>
+   <a href="../edit.php?ID=<?php echo $row['studId'];?>"><button class="btn btn-success mt-5 mb-3"> Edit</button></a>
+   <a href="../delete.php?ID=<?php echo $row['studId'];?>"><button class="btn btn-success mt-5 mb-3"> Delete</button></a>
+       </div>
+     </div>
+   
+   
   
      
   

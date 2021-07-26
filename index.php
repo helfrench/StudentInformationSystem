@@ -56,6 +56,8 @@ $row = $students->fetch_assoc();
                 <td><?php echo $row['birthdate']?></td>
                 <td><?php echo $row['date_added']?></td>
                 <td><?php echo $row['gender']?></td>
+                <td><button class="btn btn-danger"><a style="text-decoration:none;color:#fff;" href="delete.php?ID=<?php echo $row['studId'];?>">Delete</a></button></td>
+                <td><button class="btn btn-warning"><a style="text-decoration:none;color:#fff;" href="edit.php?ID=<?php echo $row['studId'];?>">Edit</a></button></td>
             </tr>
 
         <?php }while($row = $students->fetch_assoc())?>   
