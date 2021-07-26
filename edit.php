@@ -3,17 +3,18 @@
 
     include_once('php/header.php');
     include_once ('connection/connection.php');
-
-    if (isset($_SESSION['Access']) && $_SESSION['Access'] == "Administrator"){
-        echo "Welcome";
-         
-        }else{
-            
-            echo header('location:../index.php');
-             
-        } 
-    
      $con = connection();
+     if (isset($_SESSION['Access']) && $_SESSION['Access'] == "Administrator"){
+ 
+  
+  
+     
+    }else{
+        
+        echo header('location:index.php');
+         
+    } 
+
     $studID = $_GET['ID'];
       
      $sql = "SELECT * FROM student_list WHERE studId = '$studID'";
@@ -103,9 +104,9 @@
             <div class="form-group col-md-6  ">
                 <label for="inputState">Gender</label>
                 <select name="gender" id="inputState" class="form-control">
-                  <option selected><?php echo $row['gender']?></option>
-                  <option>Male</option>
-                  <option>Female</option>
+                  <option selected>----</option>
+                  <option value="Male"<?php echo ($row['gender']=="Male")?'selected':'';?> > Male </option>
+                  <option value="Female"<?php echo ($row['gender']=="Female")?'selected':'';?>>Female</option>       
                 </select>
             </div>  
           
@@ -143,7 +144,7 @@
        
 
         <div class="form-group">
-        <input class="btn btn-success mr-3 text-center" type="submit" name="submit" value="Submit">
+        <input class="btn btn-success mr-3 text-center" type="submit" name="submit" value="Update">
         <button class="btn btn-warning mr-3"><a style="text-decoration:none;color:#fff;" href="php/details.php?ID=<?php echo $row['studId'];?>">Cancel</a></button>
         <button class="btn btn-danger mr-3"><a style="text-decoration:none;color:#fff;" href="delete.php?ID=<?php echo $row['studId'];?>">Delete</a></button>
         <button class="btn btn-primary mr-3"> <a style="text-decoration:none;color:#fff;" href="index.php?ID=<?php echo $row['studId'];?>"> >>Back to Student List</a></button>

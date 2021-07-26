@@ -2,16 +2,22 @@
 
 <?php 
  
- include_once('php/header.php');
-include_once ('connection/connection.php');
+ include_once('header.php');
+include_once ('../connection/connection.php');
 
 
 
 $con = connection();
 
-$sql = "SELECT * FROM `student_list`ORDER BY studId DESC";
+$search = $_GET['search'];
+$sql = "SELECT * FROM `student_list` WHERE first_name LIKE '%$search%'OR last_name LIKE '%$search%'";
 $students = $con->query($sql) or die ($con->error);
-$row = $students->fetch_assoc();
+if($students){
+    $row = $students->fetch_assoc();
+}else{
+    echo header('location:../index.php');
+}
+
 
 ?>
 
@@ -28,9 +34,9 @@ $row = $students->fetch_assoc();
     <a href="php/login.php"><button class="btn btn-primary mt-5 mb-3"> Login</button></a>
     
 <?php } ?>
-<form action="php/result.php" method="get">
+<form action="result.php" method="get">
     <input type="text" name="search" id="search">
-    <button class="btn btn-success" type="submit" >Search</button>
+    <button class="btn btn-success" type="submit" name="query">Search</button>
 </form>
 
 
@@ -47,7 +53,8 @@ $row = $students->fetch_assoc();
                 <th scope="col">Birthdate</th>
                 <th scope="col">Date_added</th>
                 <th scope="col">Gender</th> 
-                <th scope="col">Address</th>        
+                <th scope="col">Address</th>  
+                <th scope="col">Action</th>      
             </tr>
         </thead>
         <tbody>
@@ -55,7 +62,7 @@ $row = $students->fetch_assoc();
         <?php do{ ?>
 
             <tr>
-                <td><a href="php/details.php?ID=<?php echo $row['studId'];?>">View</a></td>
+                <td><a href="details.php?ID=<?php echo $row['studId'];?>">View</a></td>
                 <td><?php echo $row['studId'];?></td>
                 <td><?php echo $row['first_name'];?></td>
                 <td><?php echo $row['last_name'];?></td>
@@ -63,8 +70,8 @@ $row = $students->fetch_assoc();
                 <td><?php echo $row['date_added'];?></td>
                 <td><?php echo $row['gender'];?></td>
                 <td><?php echo $row['address'];?></td>
-                <td><button class="btn btn-danger"><a style="text-decoration:none;color:#fff;" href="delete.php?ID=<?php echo $row['studId'];?>">Delete</a></button></td>
-                <td><button class="btn btn-warning"><a style="text-decoration:none;color:#fff;" href="edit.php?ID=<?php echo $row['studId'];?>">Edit</a></button></td>
+                <td><button class="btn btn-danger"><a style="text-decoration:none;color:#fff;" href="../delete.php?ID=<?php echo $row['studId'];?>">Delete</a></button></td>
+                <td><button class="btn btn-warning"><a style="text-decoration:none;color:#fff;" href="../edit.php?ID=<?php echo $row['studId'];?>">Edit</a></button></td>
             </tr>
 
         <?php }while($row = $students->fetch_assoc())?>   
@@ -79,4 +86,4 @@ $row = $students->fetch_assoc();
 
 
 
-  <?php include_once('php/footer.php');?>
+  <?php include_once('footer.php');?>

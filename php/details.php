@@ -41,7 +41,7 @@
         <div class="form-group col-md-2 mt-2">
             <label for="inputEmail4">Student #</label>
             <fieldset disabled>
-            <input type="text" class="form-control" id="disabledInput" placeholder="disabledInput" value="<?php echo $row['studId'];?>">
+            <input type="text" name="studId" class="form-control" id="disabledInput" placeholder="disabledInput" value="<?php echo $row['studId'];?>">
             </fieldset>
           </div>
 
@@ -79,9 +79,9 @@
                 <label for="inputState">Gender</label>
                 <fieldset disabled>
                 <select id="inputState" class="form-control">
-                  <option selected><?php echo $row['gender']?></option>
-                  <option>Male</option>
-                  <option>Female</option>                
+                  <option selected> ---- </option>
+                  <option value="Male"<?php echo ($row['gender']=="Male")?'selected':'';?> > Male </option>
+                  <option value="Female"<?php echo ($row['gender']=="Female")?'selected':'';?>>Female</option>                
                 </select>
                 </fieldset>
             </div>  
@@ -129,7 +129,7 @@
         <div class="form-group">
         <input class="btn btn-success mr-3 text-center" type="submit" name="submit" value="Submit">
         <button class="btn btn-warning mr-3"><a style="text-decoration:none;color:#fff;" href="../edit.php?ID=<?php echo $row['studId'];?>">Edit</a></button>
-        <button class="btn btn-primary mr-3"> <a style="text-decoration:none;color:#fff;" href="../index.php"> >>Back to Student List</a></button>
+        <button class="btn btn-primary mr-3"> <a style="text-decoration:none;color:#fff;" href="../index.php?ID=<?php echo $row['studId'];?>"> >>Back to Student List</a></button>
         
        
         </div>
