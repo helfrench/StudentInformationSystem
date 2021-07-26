@@ -42,6 +42,8 @@
             <select name="gender" id="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+                <option value="Genderqueer">Genderqueer</option>
+                <option value="Agender">Agender</option>
             </select>
                 
         </div>
@@ -49,7 +51,9 @@
 
         
         <div class="row mt-5 col-6">
-        <input type="submit" name="submit" value="Submit">
+        <input class="btn btn-success mr-3" type="submit" name="submit" value="Submit">
+         
+        <button class="btn btn-danger"><a style="text-decoration:none;color:#fff;" href="index.php">Cancel</a></button>
         </div>
         </form> 
          

@@ -18,14 +18,15 @@ $row = $students->fetch_assoc();
   <body>
 
   
-  <div class="container">
+  <div class="container" >
 <a href="add.php"><button class="btn btn-success mt-5 mb-3"> Add Student</button></a>
-
+<a href="deleteAll.php"><button class="btn btn-success mt-5 mb-3"> Delete All student</button></a>
 
 <?php if(isset($_SESSION['UserLogin'])){ ?>
     <a href="php/logout.php"><button class="btn btn-warning mt-5 mb-3"> Logout</button></a>
 <?php } else { ?>
     <a href="php/login.php"><button class="btn btn-primary mt-5 mb-3"> Login</button></a>
+    
 <?php } ?>
 
 
@@ -41,7 +42,8 @@ $row = $students->fetch_assoc();
                 <th scope="col">Last</th>
                 <th scope="col">Birthdate</th>
                 <th scope="col">Date_added</th>
-                <th scope="col">Gender</th>        
+                <th scope="col">Gender</th> 
+                <th scope="col">Address</th>        
             </tr>
         </thead>
         <tbody>
@@ -50,12 +52,13 @@ $row = $students->fetch_assoc();
 
             <tr>
                 <td><a href="php/details.php?ID=<?php echo $row['studId'];?>">View</a></td>
-                <td><?php echo $row['studId']?></td>
-                <td><?php echo $row['first_name']?></td>
-                <td><?php echo $row['last_name']?></td>
-                <td><?php echo $row['birthdate']?></td>
-                <td><?php echo $row['date_added']?></td>
-                <td><?php echo $row['gender']?></td>
+                <td><?php echo $row['studId'];?></td>
+                <td><?php echo $row['first_name'];?></td>
+                <td><?php echo $row['last_name'];?></td>
+                <td><?php echo $row['birthdate'];?></td>
+                <td><?php echo $row['date_added'];?></td>
+                <td><?php echo $row['gender'];?></td>
+                <td><?php echo $row['address'];?></td>
                 <td><button class="btn btn-danger"><a style="text-decoration:none;color:#fff;" href="delete.php?ID=<?php echo $row['studId'];?>">Delete</a></button></td>
                 <td><button class="btn btn-warning"><a style="text-decoration:none;color:#fff;" href="edit.php?ID=<?php echo $row['studId'];?>">Edit</a></button></td>
             </tr>
